@@ -121,6 +121,10 @@ if __name__ == "__main__":
     [eco, hab, study, bio] = result
 
     bio_document = client.get_document(bio)
-
-    print(f"Added Documents: {result}")
+    print("bio document\n")
     pprint(bio_document)
+
+    study_document = client.get_document(bio_document['part_of'][0])
+    print("study document\n")
+    pprint(study_document)
+
