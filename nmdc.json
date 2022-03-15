@@ -1,0 +1,90 @@
+[
+    { "@type" : "Class",
+      "@id" : "EcosystemSubtype",
+      "uri" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "Habitat",
+      "uri" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "LocationName",
+      "has_raw_value" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "LatLon",
+      "latitude" : "xsd:decimal",
+      "longitude" : "xsd:decimal",
+      "has_raw_value" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "Biosample",
+      "ecosystem_subtype" : "EcosystemSubtype",
+      "habitat" : "Habitat",
+      "lat_lon" : "LatLon",
+      "geo_loc_name" : "LocationName",
+      "add_date": "xsd:date",
+      "part_of" : {"@type" : "Set",
+                   "@class" : "Study" }
+    },
+
+    { "@type" : "Class",
+      "@id" : "NamedThing",
+      "name" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "Person",
+      "@inherits" : ["NamedThing"],
+      "email" : "xsd:string",
+      "profile_image_url" : "xsd:string",
+      "orcid" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "Image",
+      "url" : "xsd:string" },
+
+    { "@type" : "Class",
+      "@id" : "Publication",
+      "doi" : "xsd:anyURI" },
+
+    { "@type" : "Enum",
+      "@id" : "CreditEnum",
+      "@documentation" : { "Data curation" : "https://credit.niso.org/contributor-roles/data-curation",
+                           "Conceptualization" : "https://credit.niso.org/contributor-roles/conceptualization"},
+      "@value" : [
+          "Data curation",
+          "Conceptualization",
+          "Formal Analysis",
+          "Funding acquisition",
+          "Investigation",
+          "Methodology",
+          "Project administration",
+          "Resources",
+          "Software",
+          "Supervision",
+          "Validation",
+          "Visualization",
+          "Writing – original draft",
+          "Writing – review & editing"
+      ]},
+
+    { "@type" : "Class",
+      "@id" : "CreditAssociation",
+      "applied_roles" : { "@type" : "Set",
+                          "@class" : "CreditEnum" },
+      "applies_to_person" : "Person" },
+
+    { "@type" : "Class",
+      "@id" : "Study",
+      "@documentation" : { "@comment" : "A study..." },
+      "title" : "xsd:string",
+      "websites" : { "@type" : "Set",
+                     "@class" : "xsd:string" },
+      "image" : "Image",
+      "publications" : { "@type" : "Set",
+                         "@class" : "Publication" },
+      "has_credit_associations" : { "@type" : "Set",
+                                    "@class" : "CreditAssociation" },
+      "principle_investigator" : "Person",
+      "doi" : "xsd:anyURI" }
+]
